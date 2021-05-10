@@ -1,6 +1,7 @@
 package com.restful.questionbank.model;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -14,7 +15,7 @@ public class Question {
 	private String optionC;
 	private String optionD;
 	private String correctOption;
-	private Date created;
+	private List<Link> links=new ArrayList<>();
 	
 	public Question() {
 		
@@ -30,8 +31,8 @@ public class Question {
 		this.optionC = optionC;
 		this.optionD = optionD;
 		this.correctOption = correctOption;
-		this.created = new Date();
 	}
+
 
 	public long getId() {
 		return id;
@@ -89,12 +90,17 @@ public class Question {
 		this.correctOption = correctOption;
 	}
 
-	public Date getCreated() {
-		return created;
+	public List<Link> getLinks() {
+		return links;
+	}
+	public void setLinks(List<Link> links) {
+		this.links = links;
 	}
 
-	public void setCreated(Date created) {
-		this.created = created;
+	public void addLink(String url, String rel) {
+		Link link=new Link();
+		link.setLink(url);
+		link.setRel(rel);
+		links.add(link);
 	}
-
 }
